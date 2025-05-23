@@ -1,0 +1,7 @@
+﻿  ChessElements.cpp
+  Main.cpp
+  ChessWindow.cpp
+C:\Users\prith\source\repos\ChessApp\ChessWindow.cpp(134,62): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\prith\source\repos\ChessApp\ChessWindow.cpp(135,63): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  SFML Learning.vcxproj -> C:\Users\prith\source\repos\ChessApp\x64\Debug\ChessApp.exe
