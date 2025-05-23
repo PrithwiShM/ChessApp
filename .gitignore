@@ -1,5 +1,5 @@
 # ===== Visual Studio & MSBuild =====
-.vs/                         # VS “.vs” hidden folder
+*.vs/                         # VS “.vs” hidden folder
 *.suo                        # Solution User Options
 *.user                       # Project user options (.vcxproj.user)
 *.vcxproj.*.user             # VS2019+ user-specific project files
