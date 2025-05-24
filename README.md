@@ -4,7 +4,7 @@
 A minimal chess demo built in C++17 using SFML.  
 Supports move validation, piece‐capture, board rendering, and basic event handling.
 <p align="center">
-  <img src="assets/ChessApp.gif" alt="ChessApp in action" />
+  <img src="Assets/ChessApp.gif" alt="ChessApp in action" />
 </p>
 
 I developed this app for vaildating my understanding of Object oriented programming, ownership of objects and memory management, Event loop manangement.
