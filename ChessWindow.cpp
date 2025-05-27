@@ -54,7 +54,7 @@ ChessWindow::ChessWindow(float width, float height, const std::string& title)
     alivePieces.push_back(std::make_unique<chessPiece>(1, 5, imgPath[5], 4, 0));
     alivePieces.push_back(std::make_unique<chessPiece>(0, 5, imgPath[11], 3, 7));
 
-    // initialization the chess board in the constructor
+    // Setting up the chessboard vector
     for (const auto& piece : alivePieces) {
         board.boardelements[piece->x][piece->y] = piece.get();
     }
@@ -108,7 +108,7 @@ void ChessWindow::WriteText() {
     window.draw(text);
 }
 
-/*
+/* Description of states
 0- Nothing has happened
 1- A valid piece is selected
 2- (Intermidiary) A valid target is choosen
@@ -151,8 +151,10 @@ bool ChessWindow::update() {
                     }
                     else
                     { // everything is correct in junction to sequence of steps in move
+                        //chessPiece* del = board.boardelements[projX][projY];
+
                         move m(selected[0], selected[1], projX, projY);
-                        // Finally making the move
+                        // Finally trying to make move
                         if (board.checkvalidMove(m, turn)) {
                             if (board.checkcaptureMove(m, turn)) {
                                 // need to delete a piece!
@@ -160,19 +162,13 @@ bool ChessWindow::update() {
                                 std::cout << "Captured " << del->pieceID << " at ";
                                 std::cout << del->x << " " << del->y << std::endl;
                                 // 1) Remove the owning unique_ptr from alivePieces
-                                auto it = std::find_if(
-                                    alivePieces.begin(),
-                                    alivePieces.end(),
-                                    [&](const std::unique_ptr<chessPiece>& up) {
+                                auto it = std::find_if(alivePieces.begin(), alivePieces.end(),
+                                    [del](const std::unique_ptr<chessPiece>& up) {
                                         return up.get() == del;
                                     }
                                 );
-
-                                if (it != alivePieces.end()) {
-                                    // 2) Erase it—this calls unique_ptr::~unique_ptr(),
-                                    //    which deletes the chessPiece and frees its memory.
-                                    alivePieces.erase(it);
-                                }
+                                // 2) Erase it—this calls unique_ptr::~unique_ptr(),
+                                alivePieces.erase(it);
                                 std::cout << "AllivePieces Size " << alivePieces.size() << std::endl;
                             }
                             

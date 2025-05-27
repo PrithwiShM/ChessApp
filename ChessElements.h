@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
 
@@ -16,26 +15,9 @@ public:
     sf::Sprite Sprite;
     int x, y, pieceID; // 0 - pawn, 1- rook, 2-knight, 3-Bishop, 4-King, 5-Queen
     bool team; // 1 is white and 0 is black
-    chessPiece(bool Team, int type, const std::string& texturePath, int a, int b) {
-        sf::IntRect blank;
-        x = a;
-        y = b;
-        team = Team;
-        pieceID = type;
-        // Load texture from file
-        pieceTex.loadFromFile(texturePath, blank);
+    chessPiece(bool Team, int type, const std::string& texturePath, int a, int b);
 
-        // Set up the sprite
-        Sprite.setTexture(pieceTex, true);
-        Sprite.setPosition(sf::Vector2f(a * holderWidth / 8, b * holderHeight / 8)); // Initial position
-        Sprite.setScale(holderWidth / 1600.f, holderHeight / 1600.f); // Scale based on holder dimensions
-    }
-
-    void update_pos_Sprite(int a, int b) {
-        x = a;
-        y = b;
-        Sprite.setPosition(sf::Vector2f(x * holderWidth / 8, y * holderHeight / 8));
-    }
+    void update_pos_Sprite(int a, int b);
 };
 
 struct move {
@@ -67,6 +49,8 @@ public:
     * 
     */
     bool checkvalidMove(move m, bool t);
+
+    bool isLegalPieceMovement(move m, bool team);
 
     bool checkcaptureMove(move m, bool t);
 
